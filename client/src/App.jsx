@@ -10,6 +10,21 @@ import axios from "axios";
 function App() {
   const [AllNotes, setAllNotes] = useState([]);
 
+  useEffect(() => {
+    // Fetch data from the server
+    const fetchNotes = async () => {
+      try {
+        const res = await axios.get("http://localhost:5555/notes"); // Make a GET request to the server
+        console.log(res); //test
+        setAllNotes(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchNotes(); // Call fetchNotes function when component mounts
+  }, []);
+
   function addNote(newNote) {
     setAllNotes((prevNotes) => {
       return [...prevNotes, newNote];
@@ -24,10 +39,10 @@ function App() {
     <div>
       <Header />
       <CreateArea addNote={addNote} />
-      {AllNotes.map((note, index) => (
+      {AllNotes.map((note) => (
         <Note
-          key={index}
-          id={index}
+          key={note._id}
+          id={note._id}
           title={note.title}
           content={note.content}
           deleteNote={deleteNote}
