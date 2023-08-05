@@ -29,6 +29,23 @@ function CreateArea(props) {
     setIsExpanded(true);
   }
 
+  async function handleAddNote() {
+    try {
+      // Send POST request to server API with new note data
+      const res = await axios.post("http://localhost:5555/notes", note);
+
+      console.log(res.data);
+
+      // Update state in App component to include new note
+      props.addNote(res.data);
+
+      // Clear input fields after successful submission
+      setNote({ title: "", content: "" });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div>
       <form className="create-note">
@@ -49,13 +66,7 @@ function CreateArea(props) {
           onClick={handleClick}
         />
         <Zoom in={isExpanded}>
-          <Fab
-            onClick={(event) => {
-              props.addNote(note);
-              setNote({ title: "", content: "" });
-              event.preventDefault();
-            }}
-          >
+          <Fab onClick={handleAddNote}>
             <AddIcon />
           </Fab>
         </Zoom>
