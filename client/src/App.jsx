@@ -33,10 +33,6 @@ function App() {
     });
   }
 
-  function deleteNote(id) {
-    setAllNotes(AllNotes.filter((note, index) => index !== id));
-  }
-
   return (
     <div>
       <Header />
@@ -47,7 +43,7 @@ function App() {
           id={note._id}
           title={note.title}
           content={note.content}
-          deleteNote={deleteNote}
+          setAllNotes={setAllNotes}
         />
       ))}
       <Footer />
