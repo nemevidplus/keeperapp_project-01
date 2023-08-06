@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Route for Get a note from database by id
+// Route to Get a note from database by id
 router.get("/:id", async (req, res) => {
     try {
         const { id } = req.params; // destructuring id
@@ -33,7 +33,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// Route for Add a new note to database
+// Route to Add a new note to database
 router.post("/", async (req, res) => {
     try {
         if (!req.body.title || !req.body.content) {
@@ -56,15 +56,9 @@ router.post("/", async (req, res) => {
     }
 });
 
-// Route for Update a note
-router.put("/:id", async (req, res) => {
+// Route to Edit a note
+router.patch("/:id", async (req, res) => {
     try {
-        if (!req.body.title || !req.body.content) {
-            return res.status(400).send({
-                message: "Send all required fields: title, content"
-            });
-        }
-
         const { id } = req.params;
 
         const note = await Note.findByIdAndUpdate(id, req.body);
@@ -80,7 +74,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// Route for Delete a note
+// Route to Delete a note
 router.delete("/:id", async (req, res) => {
     try {
         const { id } = req.params;

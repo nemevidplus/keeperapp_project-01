@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Button from "@mui/material/Button";
@@ -7,11 +7,12 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 import axios from "axios";
+import Editor from "./Editor";
 
 function Note(props) {
-
-  // For popup
+  // For popup with MUI
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
@@ -36,7 +37,6 @@ function Note(props) {
 
   // Function to remove a note from database
   async function handleDeleteNote() {
-
     try {
       // Send DELETE request to server with note's id
       const res = await axios.delete("http://localhost:5555/notes/" + props.id);
@@ -63,6 +63,9 @@ function Note(props) {
       <button onClick={handleDeleteNote}>
         <DeleteIcon />
       </button>
+      <Button>
+        <EditNoteIcon />
+      </Button>
       <Button onClick={handleClickOpen('paper')} >
         <VisibilityIcon />
       </Button>

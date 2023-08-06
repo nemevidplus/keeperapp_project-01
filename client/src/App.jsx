@@ -4,8 +4,8 @@ import Footer from "./components/Footer";
 import Note from "./components/Note";
 import CreateArea from "./components/CreateArea";
 import axios from "axios";
-// In the future, if you'll have multiple pages, you can use below
-// import { Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Editor from "./components/Editor";
 
 function App() {
   const [AllNotes, setAllNotes] = useState([]);
@@ -34,22 +34,26 @@ function App() {
   }
 
   return (
-    <div>
-      <Header />
-      <CreateArea addNote={addNote} />
-      <div className="notes-box">
-        {AllNotes.map((note) => (
-          <Note
-            key={note._id}
-            id={note._id}
-            title={note.title}
-            content={note.content}
-            setAllNotes={setAllNotes}
-          />
-        ))}
-      </div>
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<div>
+        <Header />
+        <CreateArea addNote={addNote} />
+        <div className="notes-box">
+          {AllNotes.map((note) => (
+            <Note
+              key={note._id}
+              id={note._id}
+              title={note.title}
+              content={note.content}
+              setAllNotes={setAllNotes}
+            />
+          ))}
+        </div>
+        <Footer />
+      </div>}>
+      </Route>
+      <Route path="/notes/edit/:id" element={<Editor />} />
+    </Routes>
   );
 }
 
