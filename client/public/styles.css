@@ -41,6 +41,13 @@ footer p {
   color: #ccc;
 }
 
+/* This is optional, notes are left-aligned without this class */
+.notes-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .note {
   background: #fff;
   border-radius: 7px;

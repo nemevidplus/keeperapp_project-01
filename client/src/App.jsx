@@ -37,15 +37,17 @@ function App() {
     <div>
       <Header />
       <CreateArea addNote={addNote} />
-      {AllNotes.map((note) => (
-        <Note
-          key={note._id}
-          id={note._id}
-          title={note.title}
-          content={note.content}
-          setAllNotes={setAllNotes}
-        />
-      ))}
+      <div className="notes-box">
+        {AllNotes.map((note) => (
+          <Note
+            key={note._id}
+            id={note._id}
+            title={note.title}
+            content={note.content}
+            setAllNotes={setAllNotes}
+          />
+        ))}
+      </div>
       <Footer />
     </div>
   );
