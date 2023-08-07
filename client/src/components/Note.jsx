@@ -9,7 +9,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import axios from "axios";
-import Editor from "./Editor";
+import { useNavigate } from "react-router-dom";
 
 function Note(props) {
   // For popup with MUI
@@ -56,6 +56,14 @@ function Note(props) {
     }
   }
 
+  // Access to useNavigate function
+  let navigate = useNavigate();
+  // Function to redirect to "Editor" page
+  function routeChange() {
+    let path = "/notes/edit/" + props.id;
+    navigate(path);
+  }
+
   return (
     <div className="note">
       <h1>{props.title}</h1>
@@ -63,7 +71,7 @@ function Note(props) {
       <button onClick={handleDeleteNote}>
         <DeleteIcon />
       </button>
-      <Button>
+      <Button onClick={routeChange}>
         <EditNoteIcon />
       </Button>
       <Button onClick={handleClickOpen('paper')} >
