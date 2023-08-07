@@ -41,89 +41,46 @@ footer p {
     color: #ccc;
 }
 
-/* This is optional, notes are left-aligned without this class */
-.notes-box {
+#edit-container {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
 }
 
-.note {
-    background: #fff;
-    border-radius: 7px;
-    box-shadow: 0 2px 5px #ccc;
-    padding: 10px;
-    width: 240px;
-    margin: 16px;
-    float: left;
+div.edit-box {
+    margin: 10px 0;
 }
 
-.note h1 {
-    font-size: 1.1em;
-    margin-bottom: 6px;
-    width: 220px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.edit-box label {
+    font-weight: bold;
+    font-size: 20px;
 }
 
-.note p {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
+.edit-box label::after {
+    content: "\A";
+    white-space: pre;
 }
 
-.note button {
-    position: relative;
-    float: right;
-    margin-right: 10px;
-    color: #f5ba13;
-    border: none;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    outline: none;
+.edit-box input {
+    padding: 5px;
+    width: 70vw;
+    font-size: 18px;
+    border-radius: 10px;
 }
 
-form.create-note {
-    position: relative;
-    width: 480px;
-    margin: 30px auto 20px auto;
-    background: #fff;
-    padding: 15px;
-    border-radius: 7px;
-    box-shadow: 0 1px 5px rgb(138, 137, 137);
+textarea.content {
+    padding: 5px;
+    height: 300px;
+    width: 70vw;
+    font-size: 18px;
+    border-radius: 10px;
 }
 
-form.create-note input,
-form.create-note textarea {
-    width: 100%;
-    border: none;
-    padding: 4px;
-    outline: none;
-    font-size: 1.2em;
-    font-family: inherit;
-    resize: none;
-}
-
-form.create-note button {
-    position: absolute;
-    right: 18px;
-    bottom: -18px;
-    background: #f5ba13;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    outline: none;
+#button-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin: 0 15vw;
 }

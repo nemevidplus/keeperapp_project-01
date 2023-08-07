@@ -4,6 +4,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "../styles/styles.css";
 import axios from "axios";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 function Editor() {
     // Get the id parameter from the URL
@@ -94,26 +96,50 @@ function Editor() {
         navigate("/");
     }
 
-
     return <div>
         <Header />
-        <h1>Hello</h1>
-        <input
-            type="text"
-            name="title"
-            value={editedNote.title}
-            onChange={handleOnChange}
-        />
-        <input
-            type="text"
-            name="content"
-            value={editedNote.content}
-            onChange={handleOnChange}
-        />
+        <h1>Edit a Note</h1>
+
+        <div id="edit-container">
+            <div className="edit-box">
+                <label>Title:</label>
+                <input
+                    type="text"
+                    name="title"
+                    value={editedNote.title}
+                    onChange={handleOnChange}
+                />
+            </div>
+
+
+            <div className="edit-box">
+                <label>Content:</label>
+                <textarea
+                    className="content"
+                    type="text"
+                    name="content"
+                    value={editedNote.content}
+                    onChange={handleOnChange}
+                />
+            </div>
+        </div>
+
         {isChanged &&
-            <div>
-                <button onClick={handleCancel}>Cancel</button>
-                <button onClick={handleSave}>Save</button>
+            <div id="button-container">
+                <Stack spacing={2} direction="row">
+                    <Button
+                        variant="contained"
+                        color="warning"
+                        onClick={handleCancel}>
+                        Cancel
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="success"
+                        onClick={handleSave}>
+                        Save
+                    </Button>
+                </Stack>
             </div>}
         <Footer />
     </div>
