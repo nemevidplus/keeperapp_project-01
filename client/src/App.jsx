@@ -12,7 +12,8 @@ function App() {
     // Fetch data from the server
     const fetchNotes = async () => {
       try {
-        const res = await axios.get("http://localhost:5555/notes"); // Make a GET request to the server
+        // Make a GET request to the server
+        const res = await axios.get("http://localhost:5555/notes");
 
         console.log(res); //test
 

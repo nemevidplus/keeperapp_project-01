@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../styles/styles.css";
@@ -72,35 +72,49 @@ function Editor() {
         console.log(isChanged);
     }, [editedNote]);
 
+    // Disregard any changes and rollback to the original note
     function handleCancel(event) {
-        // Disregard any changes and rollback to the original note
         setEditedNote({
             ...originalNote
         });
+
+        setIsChanged(false);
     }
+
+    // Access to useNavigate function
+    let navigate = useNavigate();
+
+    // Update note according to user's compilation
+    async function handleSave(event) {
+        // Send PATCH request to server with note's id
+        await axios.patch("http://localhost:5555/notes/" + id, editedNote);
+
+        setIsChanged(false);
+
+        navigate("/");
+    }
+
 
     return <div>
         <Header />
         <h1>Hello</h1>
-        <form>
-            <input
-                type="text"
-                name="title"
-                value={editedNote.title}
-                onChange={handleOnChange}
-            />
-            <input
-                type="text"
-                name="content"
-                value={editedNote.content}
-                onChange={handleOnChange}
-            />
-            {isChanged &&
-                <div>
-                    <button onClick={handleCancel}>Cancel</button>
-                    <button>Save</button>
-                </div>}
-        </form>
+        <input
+            type="text"
+            name="title"
+            value={editedNote.title}
+            onChange={handleOnChange}
+        />
+        <input
+            type="text"
+            name="content"
+            value={editedNote.content}
+            onChange={handleOnChange}
+        />
+        {isChanged &&
+            <div>
+                <button onClick={handleCancel}>Cancel</button>
+                <button onClick={handleSave}>Save</button>
+            </div>}
         <Footer />
     </div>
 }
