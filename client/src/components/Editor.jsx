@@ -89,7 +89,7 @@ function Editor() {
     // Update note according to user's compilation
     async function handleSave(event) {
         // Send PATCH request to server with note's id
-        await axios.patch("http://localhost:5555/notes/" + id, editedNote);
+        await axios.patch(process.env.REACT_APP_BASE_URL + id, editedNote);
 
         setIsChanged(false);
 
