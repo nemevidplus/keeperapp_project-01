@@ -32,7 +32,7 @@ function CreateArea(props) {
   async function handleAddNote() {
     try {
       // Send POST request to server API with new note data
-      const res = await axios.post("http://localhost:5555/notes", note);
+      const res = await axios.post(process.env.REACT_APP_BASE_URL, note);
 
       console.log(res.data);
 

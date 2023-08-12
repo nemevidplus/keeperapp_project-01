@@ -13,7 +13,7 @@ function App() {
     const fetchNotes = async () => {
       try {
         // Make a GET request to the server
-        const res = await axios.get("http://localhost:5555/notes");
+        const res = await axios.get(process.env.REACT_APP_BASE_URL);
 
         console.log(res); //test
 

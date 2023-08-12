@@ -31,7 +31,7 @@ function Editor() {
         const fetchData = async () => {
             try {
                 // Send GET request to server with note's id
-                const res = await axios.get("http://localhost:5555/notes/" + id);
+                const res = await axios.get(process.env.REACT_APP_BASE_URL + id);
                 setOriginalNote({
                     title: res.data.title,
                     content: res.data.content

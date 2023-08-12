@@ -11,7 +11,7 @@ function Note(props) {
   async function handleDeleteNote() {
     try {
       // Send DELETE request to server with note's id
-      const res = await axios.delete("http://localhost:5555/notes/" + props.id);
+      const res = await axios.delete(process.env.REACT_APP_BASE_URL + props.id);
 
       console.log(res.data);
 
