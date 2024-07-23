@@ -18,6 +18,9 @@
   "devDependencies": {
     "typescript": "5.1.6"
   },
+  "engines": {
+    "node": "22.5.1"
+  },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
