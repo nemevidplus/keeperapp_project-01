@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 app.use("/notes", noteRoute);
 
 mongoose
-    .connect(process.env.MONGODB_URI)
+    .connect(process.env.MONGODB_URL)
     .then(() => {
         console.log("App connected to database");
         app.listen(port, () => {
